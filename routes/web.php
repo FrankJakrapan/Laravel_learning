@@ -5,7 +5,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BackOfficeController;
-
+use App\Http\Middleware\EnsureTokenIsValid;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -92,8 +93,16 @@ Route::delete('/users/remove/{id}', [UserController::class, 'delete']);
 //user singIn
 Route::get('/user/signIn', [UserController::class, 'signIn']);
 Route::post('/user/signInProcess', [UserController::class, 'signInProcess']);
-Route::get('/user/signOut', [UserController::class, 'signOut']);
-Route::get('/user/info', [UserController::class, 'info']);
+Route::get('/user/signOut', [UserController::class, 'signOut'])->middleware(EnsureTokenIsValid::class);
+Route::get('/user/info', [UserController::class, 'info'])->middleware(EnsureTokenIsValid::class);
 
 //BackOffice
-Route::get('/backOffice', [BackOfficeController::class, 'index']);
+Route::get('/backOffice', [BackOfficeController::class, 'index'])->middleware(EnsureTokenIsValid::class);
+
+//Product
+Route::get('/product/list', [ProductController::class, 'list']);
+Route::get('/product/form', [ProductController::class, 'form']);
+Route::post('/product', [ProductController::class, 'save']);
+Route::get('/product/{id}', [ProductController::class, 'edit']);
+Route::put('/product/{id}', [ProductController::class, 'update']);
+Route::get('/product/remove/{id}', [ProductController::class, 'remove']);
