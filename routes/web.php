@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BackOfficeController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,3 +81,19 @@ Route::post('/customers', [$CustomerController, 'create']);
 Route::put('/customers/{id}', [$CustomerController, 'update']);
 Route::delete('/customers/{id}', [$CustomerController, 'delete']);
 
+//Route whith Controller User
+Route::get('/users/list', [UserController::class, 'list']);
+Route::get('/users/form', [UserController::class, 'form']);
+Route::post('/users', [UserController::class, 'create']);
+Route::get('/users/{id}', [UserController::class, 'edit']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/remove/{id}', [UserController::class, 'delete']);
+
+//user singIn
+Route::get('/user/signIn', [UserController::class, 'signIn']);
+Route::post('/user/signInProcess', [UserController::class, 'signInProcess']);
+Route::get('/user/signOut', [UserController::class, 'signOut']);
+Route::get('/user/info', [UserController::class, 'info']);
+
+//BackOffice
+Route::get('/backOffice', [BackOfficeController::class, 'index']);
