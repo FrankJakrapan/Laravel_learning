@@ -106,3 +106,12 @@ Route::post('/product', [ProductController::class, 'save']);
 Route::get('/product/{id}', [ProductController::class, 'edit']);
 Route::put('/product/{id}', [ProductController::class, 'update']);
 Route::get('/product/remove/{id}', [ProductController::class, 'remove']);
+
+Route::post('/product/search', [ProductController::class, 'search']);
+Route::get('/product-sort', [ProductController::class, 'sort']);
+Route::get('/product-priceMoreThan', [ProductController::class, 'priceMoreThan']);
+Route::get('/product-priceLessThan', [ProductController::class, 'priceLessThan']);
+Route::get('/product-priceBetween', [ProductController::class, 'priceBetween']);
+Route::get('/product-priceNotBetween', [ProductController::class, 'priceNotBetween']);
+Route::get('/product-priceIn', [ProductController::class, 'priceIn']);
+Route::get('/product-priceMaxMinCountAvg', [ProductController::class, 'priceMaxMinCountAvg']);

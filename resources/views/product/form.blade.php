@@ -33,6 +33,22 @@
             <label for="detail">Detail</label>
             <input type= "text" name="detail" class="form-control" placeholder="Detail" value="{{$product->detail ?? ''}}">
         </div>
+        <div class="form-group mt-3">
+            <label for="product_type_id">Product Type</label>
+            <select name="product_type_id" class="form-control">
+                @foreach ($productTypes as $productType)
+                    <option value="{{$productType->id}}"
+                        @if (isset($product))
+                            @if ($product->product_type_id == $productType->id)
+                                selected
+                            @endif
+                        @endif
+                        >
+                        {{$productType->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary mt-3">
             <i class="fa fa-save"></i>
             Save
