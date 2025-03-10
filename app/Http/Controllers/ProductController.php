@@ -159,7 +159,7 @@ class ProductController extends Controller{
 
         // echo "<pre>";
         // print_r($productType);
-        // echo "</pre>";exit;
+        // echo "</pre>";exit; 
 
         return view('product.listByProductType', compact('productType'));
 

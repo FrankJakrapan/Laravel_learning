@@ -31,6 +31,7 @@
                 <th>Price</th>
                 <th>Qty</th>
                 <th>Detail</th>
+                <th>Type ID</th>
                 <th>Product Type</th>
                 <th width="110px">Action</th>
             </tr>
@@ -42,6 +43,7 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->qty }}</td>
                     <td>{{ $product->detail }}</td>
+                    <td>{{  $product->product_type_id }}</td>
                     <td>{{  $product->productType->name }}</td>
                     <td class="text-center">
                         <a href="/product/{{ $product->id }}" class="btn btn-primary">

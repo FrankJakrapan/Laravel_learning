@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BackOfficeController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductTypeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -117,3 +118,6 @@ Route::get('/product-priceIn', [ProductController::class, 'priceIn']);
 Route::get('/product-priceMaxMinCountAvg', [ProductController::class, 'priceMaxMinCountAvg']);
 Route::get('/productTypeList', [ProductController::class, 'productTypeList']);
 Route::get('/listByProductType/{productTypeId}', [ProductController::class, 'listByProductType']);
+
+//livewire
+Route::get('/product-type/list', [ProductTypeController::class, 'index']);
