@@ -115,3 +115,5 @@ Route::get('/product-priceBetween', [ProductController::class, 'priceBetween']);
 Route::get('/product-priceNotBetween', [ProductController::class, 'priceNotBetween']);
 Route::get('/product-priceIn', [ProductController::class, 'priceIn']);
 Route::get('/product-priceMaxMinCountAvg', [ProductController::class, 'priceMaxMinCountAvg']);
+Route::get('/productTypeList', [ProductController::class, 'productTypeList']);
+Route::get('/listByProductType/{productTypeId}', [ProductController::class, 'listByProductType']);

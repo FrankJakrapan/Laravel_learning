@@ -148,4 +148,21 @@ class ProductController extends Controller{
         return view('product.maxMinCountAvg', compact('priceMax', 'priceMin', 'priceCount', 'priceAvg'));
     }
 
+    public function productTypeList(){
+        $productTypes = ProductType::orderby('name', 'asc')->get();
+     
+        return view('product.productTypeList', compact('productTypes'));
+    }
+
+    public function listByProductType($productTypeId) {
+        $productType = ProductType::find($productTypeId);
+
+        // echo "<pre>";
+        // print_r($productType);
+        // echo "</pre>";exit;
+
+        return view('product.listByProductType', compact('productType'));
+
+    }
+
 }
