@@ -1,49 +1,62 @@
-<?php
+<?php 
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use App\Models\ProductType;
 use Illuminate\Http\Request;
+use App\Models\ProductType;
+use Livewire\Component;
 
-class productTypeComponent extends Component{
+class ProductTypeComponent extends Component
+{
     public $id;
     public $name;
     public $productTypes = [];
+    public $showModal = false;
+    public $editing = false;
 
-    public function fetchData(){
-        $this->productTypes = ProductType::orderby('id', 'desc')->get();
+    public function fetchData() {
+        $this->productTypes = ProductType::orderBy('id', 'desc')->get();
     }
 
-    public function save(){
-        if($this->id){
+    public function create() {
+        $this->showModal = true;
+    }
+
+    public function save() {
+        if ($this->id) {
             $productType = ProductType::find($this->id);
-        }else{
+        } else {
             $productType = new ProductType();
         }
 
         $productType->name = $this->name;
         $productType->save();
-        $this->name = null;
-        $this->fetchData();
-    }   
+        $this->name = '';
 
-    public function edit($id){
+        $this->fetchData();
+
+        $this->showModal = false;
+        $this->editing = false;
+    }
+
+    public function edit($id) {
+        $this->editing = true;
+        $this->showModal = true;
+
         $productType = ProductType::find($id);
         $this->id = $productType->id;
         $this->name = $productType->name;
     }
 
-    public function remove($id){
+    public function remove($id) {
         $productType = ProductType::find($id);
         $productType->delete();
 
         $this->fetchData();
     }
 
-    public function render(){
+    public function render() {
         $this->fetchData();
-
         return view('livewire.productType');
     }
 }
